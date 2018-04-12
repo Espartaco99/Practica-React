@@ -31,8 +31,8 @@ class App extends Component {
     }
 
     render() {
-        const { username, nombre, apellido, edad } = this.state
-        const message = `Hi ${nombre} ${apellido}! You are ${edad} and your username is ${username}.`
+        const { username, nombre, apellido, edad, genero } = this.state
+        const message = `Hi ${nombre} ${apellido}! You are ${edad}, your gender is ${genero} and your username is ${username}.`
 
         return (
             <div className="App">
