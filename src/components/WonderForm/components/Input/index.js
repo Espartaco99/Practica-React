@@ -11,16 +11,32 @@ class Input extends React.Component {
 
     onValueChange = e => {
         let value = e.target.value
-        const { onChange } = this.props
-        onChange(value)
+        console.log(this.props);
+        const { onChange, type, name } = this.props
+        onChange(name, value);
+        /* if (type !== 'number'){
+            onChange('username', value);
+        }
+        else {
+            onChange('text', value);
+        } */
+    
+        
         this.setState({inputValue: value})
     }
 
     render() {
         const { inputValue } = this.state
-
+        const { type, name } = this.props
         return (
-            <input type="text" onChange={this.onValueChange} value={inputValue} />
+            <div>
+                <input 
+                    type={type}
+                    onChange={this.onValueChange}
+                    //onClick={ () => alert({type})} 
+                    value={inputValue} 
+                />
+            </div>
         )
     }
 }

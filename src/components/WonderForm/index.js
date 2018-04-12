@@ -6,7 +6,10 @@ import Input from './components/Input'
 const WonderForm = props => {
     return (
         <div className="wonder-form">
-            <Input onChange={props.onUsernameChange} />
+            <Input type="text" onChange={props.onInputChange} name="nombre" placeholder="nombre"/>
+            <Input type="text" onChange={props.onInputChange} name="apellido" placeholder="apellido" />
+            <Input type="number" onChange={props.onInputChange} name="edad" placeholder="edad" />
+            <Input type="text" onChange={props.onUsernameChange} name="username" placeholder="username"/>
         </div>
     )
 }

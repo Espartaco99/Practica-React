@@ -9,11 +9,11 @@ class Intro extends Component {
         }
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     this.setState({
-    //         message: nextProps.message
-    //     })
-    // }
+     componentWillReceiveProps(nextProps) {
+         this.setState({
+             message: nextProps.message
+         })
+     }
 
     render() {
         const { message } = this.state
