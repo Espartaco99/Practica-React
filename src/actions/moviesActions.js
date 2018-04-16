@@ -34,6 +34,20 @@ export function loadComingSoon(page = 1){
     }
 }
 
+export function loadTopRatedMovies(page = 1){
+    return dispatch => {
+        fetch(`http://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`)
+        .then(response => response.json())
+        .then(json => json.results)
+        .then(movies => dispatch(loadMoviesSuccess(movies, page)))
+        .catch(error => {
+            dispatch(loadMoviesFailure())
+            alert('We could not load the page at this time.')
+        })
+    }
+}
+
+
 
 
 
