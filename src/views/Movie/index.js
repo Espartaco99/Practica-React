@@ -1,5 +1,9 @@
 import React from 'react'
 
+import * as movieActions from '../../actions/movieActions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 class Movie extends React.Component {
     constructor(props) {
         super(props) 
@@ -10,15 +14,19 @@ class Movie extends React.Component {
     }
 
     componentDidMount(){
-        fetch(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
-        .then(response => response.json())
-        .then(movie => this.setState({movie}))
-        .catch(error => alert('We could not load the page at this time.'))
+        const { movieActions } = this.props
+
+        movieActions.loadMovie(this.props.match.params.id);
+    }
+
+    componentWillReceiveProps(nextProps){
+
+        this.setState({movie: nextProps.movie})
     }
 
     render() {
         const { movie } = this.state
-
+        console.log(movie);
         return (
             <section className="container main movie" style={{backgroundImage: movie.id ? `url(https://image.tmdb.org/t/p/w342/${movie.backdrop_path})` : ''}}>
                 <div className="overlay"></div>
@@ -43,4 +51,17 @@ class Movie extends React.Component {
     }
 }
 
-export default Movie
+function mapStateToProps(state, ownProps){
+    console.log(state);
+    return {
+        movie: state.movie
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        movieActions: bindActionCreators(movieActions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movie)
