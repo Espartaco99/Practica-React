@@ -21,7 +21,7 @@ class Home extends React.Component {
         const { movies } = this.state
         const { moviesActions } = this.props
 
-        moviesActions.loadComingSoon()
+        moviesActions.loadMovies(null,"upcoming");
 
         window.addEventListener("scroll", e => {
             const { page } = this.state

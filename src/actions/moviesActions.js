@@ -8,9 +8,16 @@ export function loadMoviesFailure(){
     return { type: types.LOAD_MOVIES_FAILURE }
 }
 
-export function loadMovies(page = 1){
+export function loadMovies(page = 1, type){
+    let url;
+    switch (type){
+        case "popular": url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`; break;
+        case "upcoming": url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`; break;
+        case "top_rated": url = `http://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`; break;
+        default: alert("Fallo en el tipo");
+    }
     return dispatch => {
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`)
+        fetch(url)
         .then(response => response.json())
         .then(json => json.results)
         .then(movies => dispatch(loadMoviesSuccess(movies, page)))
@@ -21,7 +28,7 @@ export function loadMovies(page = 1){
     }
 }
 
-export function loadComingSoon(page = 1){
+/* export function loadComingSoon(page = 1){
     return dispatch => {
         fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=${page}`)
         .then(response => response.json())
@@ -46,7 +53,7 @@ export function loadTopRatedMovies(page = 1){
         })
     }
 }
-
+ */
 
 
 

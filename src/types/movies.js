@@ -1,2 +1,5 @@
 export const LOAD_MOVIES_SUCCESS = 'LOAD_MOVIES_SUCCESS'
 export const LOAD_MOVIES_FAILURE = 'LOAD_MOVIES_FAILURE'
+/* export const STANDARD = 'STANDARD'
+export const COMING_SOON = 'COMING_SOON'
+export const TOP_RATED = 'TOP_RATED' */

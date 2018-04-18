@@ -22,7 +22,7 @@ class TopRatedMovies extends React.Component {
         const { movies } = this.state
         const { moviesActions } = this.props
 
-        moviesActions.loadTopRatedMovies()
+        moviesActions.loadMovies(null,"top_rated")
 
         window.addEventListener("scroll", e => {
             const { page } = this.state
